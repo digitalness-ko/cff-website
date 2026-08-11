@@ -1,0 +1,10 @@
+# Raw browser-saved exports used only during design work — not part of the site
+*.html - Claude.html
+*_files/
+.DS_Store
+
+# Local tooling
+.claude/
+
+# Superseded by index.html (kept locally as a working copy, not tracked)
+CFF Site Prototype (Restyled).html
