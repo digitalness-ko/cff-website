@@ -70,13 +70,16 @@ p{margin:0}
 .eyebrow{font-family:'Poppins',sans-serif;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin:0 0 16px}
 .lede{font-size:16.5px;line-height:1.72;color:var(--ink-soft)}
 .small{font-size:13px;color:var(--ink-faint)}
+.statement{font-family:'Poppins',sans-serif;font-weight:500;font-size:19px;line-height:1.58;color:var(--purple)}
+.lede strong,.statement strong{color:var(--purple);font-weight:600}
 
 /* nav — full-bleed bar, in normal flow (not fixed/sticky); content hugs the real page edges
    rather than the narrower 1080px reading column. Gradient is sized to the bar's own
    natural height and ends in the exact cream the hero below it uses, so there's no seam. */
-.nav{background:linear-gradient(180deg, var(--purple) 0%, var(--purple) 12%, var(--cream) 100%)}
-.nav-inner{padding:26px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.mark{display:flex;align-items:center;gap:10px;font-family:'Poppins',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.035em;color:var(--ink);text-transform:uppercase}
+.nav{background:linear-gradient(180deg, var(--purple) 0%, var(--cream) 66%)}
+.nav-inner{padding:24px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.mark{display:flex;align-items:center;gap:11px;font-family:'Poppins',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.035em;color:var(--ink);text-transform:uppercase}
+.mark-logo{width:50px;height:50px;flex:none;display:block}
 .nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;font-family:'Poppins',sans-serif;font-weight:600;font-size:13px;letter-spacing:-.015em;text-transform:uppercase;color:var(--ink)}
 .nav a.on{color:var(--ink);border-bottom:1.5px solid var(--ink);padding-bottom:2px}
 
@@ -85,7 +88,17 @@ section.pg{display:none;animation:fade .3s ease}
 section.pg.live{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .hero{padding:76px 0 92px;background:var(--cream)}
-.hero h1,.hero .lede{max-width:680px}
+.hero h1,.hero .lede,.hero .statement{max-width:680px}
+.hero-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:44px;align-items:center}
+.hero-split > div:first-child :is(h1,.lede,.statement){max-width:none}
+.hero-media{display:block;width:100%;height:auto}
+@media (min-width:861px){
+  #pg-home .hero .wrap{max-width:1280px}
+}
+@media (max-width:860px){
+  .hero-split{grid-template-columns:1fr;gap:28px}
+  .hero-media{order:-1}
+}
 .band{background:var(--cream);padding:72px 0;margin-top:0}
 .band-alt{background:var(--purple);color:#fff;padding:60px 0;margin-top:60px}
 .band-alt h2{color:#fff}
@@ -145,6 +158,13 @@ section.pg.live{display:block}
 .note{border-left:2px solid var(--orange);padding-left:14px;margin-top:16px}
 .note .by{font-size:11.5px;color:var(--ink-faint);margin-bottom:3px}
 .note blockquote{font-family:'Instrument Serif',serif;font-size:15.5px;line-height:1.55;color:var(--ink-soft);margin:0;font-style:italic}
+.desc{font-size:13px;line-height:1.62;color:var(--ink-faint);margin-top:6px}
+.trythis{border-left:2px solid var(--purple);padding-left:14px;margin-top:16px}
+.trythis .lbl{font-family:'Poppins',sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);margin-bottom:5px}
+.trythis p{font-size:13.5px;line-height:1.6;color:var(--ink-soft)}
+.item-link{display:inline-block;margin-top:14px;font-size:13px;color:var(--purple);text-decoration:underline;text-underline-offset:3px}
+.item-link:hover{color:var(--purple-deep)}
+.pending{display:inline-block;margin-top:14px;font-size:12px;color:var(--ink-faint);font-style:italic}
 .empty{padding:44px 4px;color:var(--ink-faint);font-size:14px}
 
 /* people + list rows */
@@ -175,6 +195,7 @@ section.pg.live{display:block}
 footer{background:var(--purple);color:var(--cream);margin-top:0}
 footer .wrap{padding-top:64px;padding-bottom:48px}
 .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.footer-logo{width:104px;height:104px;display:block;margin:-6px 0 22px -6px}
 .footer-email{display:inline-flex;align-items:center;gap:10px;font-family:'Instrument Serif',serif;font-size:22px;color:#fff;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:7px;margin-bottom:36px}
 .footer-email .dot{width:18px;height:18px;border-radius:50%;border:1.5px solid #fff;flex:none}
 .footer-links{display:flex;gap:48px}
@@ -192,9 +213,19 @@ footer .wrap{padding-top:64px;padding-bottom:48px}
 
 @media (max-width:640px){
   .wrap{padding:0 20px}
-  .hero{padding:48px 0 40px}
-  .nav ul{gap:15px;font-size:12px}
-  .band,.band-alt{padding:44px 0;margin-top:44px}
+  .hero{padding:40px 0 38px}
+  h1{font-size:33px;line-height:1.08}
+  h2{font-size:24px}
+  h1 em{text-decoration-thickness:3px;text-underline-offset:4px}
+  .nav-inner{flex-direction:column;align-items:flex-start;gap:14px;padding:16px 20px}
+  .mark{font-size:15px;letter-spacing:-.025em;gap:9px}
+  .mark-logo{width:44px;height:44px}
+  .nav ul{gap:9px 16px;font-size:11px;letter-spacing:-.01em;flex-wrap:wrap}
+  .nav ul li{white-space:nowrap}
+  .band{padding:44px 0;margin-top:0}
+  .band-alt{padding:44px 0;margin-top:36px}
+  .lede{font-size:15.5px}
+  .statement{font-size:17px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -205,19 +236,14 @@ footer .wrap{padding-top:64px;padding-bottom:48px}
 <nav class="nav">
   <div class="nav-inner">
     <a class="mark" href="#home">
-      <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="12" cy="12" r="3" fill="none" stroke="#8B52FF" stroke-width="1.6"></circle>
-        <circle cx="12" cy="12" r="6.6" fill="none" stroke="#8B52FF" stroke-width="1.6" opacity=".6"></circle>
-        <circle cx="12" cy="12" r="10.2" fill="none" stroke="#8B52FF" stroke-width="1.6" opacity=".3"></circle>
-      </svg>
+      <img class="mark-logo" src="assets/cff-logo-mark.png" alt="" width="50" height="50">
       Center for the Future
     </a>
     <ul id="menu">
       <li><a href="#about" data-pg="about">Who We Are</a></li>
-      <li><a href="#work" data-pg="work">Our Work</a></li>
-      <li><a href="#library" data-pg="library">Library</a></li>
-      <li><a href="#journal" data-pg="journal">Get Involved</a></li>
-      <li><a href="#contact" data-pg="contact">Contact</a></li>
+      <li><a href="#library" data-pg="library">Practice Library</a></li>
+      <li><a href="#community" data-pg="community">Community</a></li>
+      <li><a href="#contact" data-pg="contact">Contact Us</a></li>
     </ul>
   </div>
 </nav>
@@ -226,160 +252,63 @@ footer .wrap{padding-top:64px;padding-bottom:48px}
 <section class="pg live" id="pg-home">
   <header class="hero">
     <div class="wrap">
-      <h1>Communities are not <em>consulted</em> into a decision. They are built into it.</h1>
-      <p class="lede" style="margin-top:22px">We work on one question: what does it take to design governance that puts the people most affected at the start of the process rather than the end of it? We are independent, and we work for communities — not for the institutions that convene them.</p>
-      <div style="margin-top:30px;display:flex;gap:10px;flex-wrap:wrap">
-        <a class="btn" href="#work" data-pg="work">See how we work</a>
-        <a class="btn" href="#library" data-pg="library">Browse the library</a>
-      </div>
+      <div class="hero-split">
+        <div>
+          <h1>Communities should not just be consulted about the decisions that shape their land, water and coasts. <em>They should be the ones making them</em>.</h1>
+          <p class="statement" style="margin-top:22px">CFF is a community of practical radicals doing climate work with people that are most impacted by the climate crisis.</p>
+          <p class="lede" style="margin-top:16px">CFF helps teams sensemake, experiment, and mobilize projects that make climate solutions work with, and for, people. We bring together designers, researchers, and policymakers to do climate work that is run by communities, and works for communities.</p>
+          <div style="margin-top:30px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="#library" data-pg="library">See the methods</a>
+            <a class="btn" href="#community" data-pg="community">Join the practice</a>
+          </div>
+        </div>
+        <img class="hero-media" src="assets/cff-hero.webp" width="1500" height="1400" alt="A community gathered outdoors watching the sun rise over hills and wind turbines">
 
-      <div class="stats">
-        <div class="stat"><span class="n">27</span><p>Citizen dialogues feeding evidence into UNOC3</p></div>
-        <div class="stat"><span class="n">4</span><p>Governance traps in our shared diagnostic</p></div>
-        <div class="stat"><span class="n">82</span><p>Annotated resources in the open library</p></div>
+
       </div>
     </div>
   </header>
-
-  <div class="wrap" style="padding-bottom:90px">
-    <div class="rowhead" style="margin-top:92px">
-      <h2>What we do</h2>
-      <p>Four workstreams. We decline everything adjacent to them.</p>
-    </div>
-    <div class="grid g2">
-      <div class="card"><h3>Citizen dialogues</h3><p>Structured processes that turn lived experience into a brief a named decision-maker has to answer. Tested across 27 dialogues informing the UN Ocean Conference.</p></div>
-      <div class="card"><h3>Community-to-negotiation pathways</h3><p>The route from a coastal village to a negotiating room. We design the handoffs so evidence survives the journey intact.</p></div>
-      <div class="card"><h3>Participatory land and ocean planning</h3><p>Co-designed adaptation plans, benefit-sharing agreements and coastal resilience strategies that communities helped write.</p></div>
-      <div class="card"><h3>Co-ownership models</h3><p>How communities come to own a share of the renewable energy and coastal assets built on their doorstep.</p></div>
-    </div>
-
-    <div style="margin-top:56px">
-      <p class="eyebrow">Partners and anchors</p>
-      <div class="partners">
-        <span>C3 Labs</span><span>Climate House</span><span>SOA Tanzania</span><span>SOA Kenya</span><span>Meridian</span>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- ===================== ABOUT ===================== -->
 <section class="pg" id="pg-about">
   <header class="hero">
     <div class="wrap">
-      <h1>An <em>independent</em> bridge</h1>
-      <p class="lede" style="margin-top:22px">The Center for the Future is a regenerative design think tank, advisory practice and civic research lab. We were founded on an observation that is well evidenced and badly institutionalised: when the people most affected by a decision help shape it, the outcome is more equitable, more durable, and cheaper to deliver. Everyone agrees. Almost nobody has built the systems that make it normal.</p>
+      <h1>CFF is a community of <em>practical radicals</em> doing climate work with people that are most impacted by the climate crisis.</h1>
+      <p class="lede" style="margin-top:22px">We are a <strong>regenerative design think tank and community of practice</strong> that works for communities. We bring together designers, researchers, and policymakers to challenge dominant narratives, test alternatives, and build the ones that will ensure better outcomes for all by centering regenerative design and participatory governance.</p>
     </div>
   </header>
 
   <div class="band">
     <div class="wrap">
-      <h2>How we work</h2>
-      <div style="margin-top:22px">
+      <h2>What we do</h2>
+      <p class="lede" style="margin-top:16px;max-width:680px">We research, prototype, and action the governance methods that put communities at the centre of climate and ecological decisions, and we build them with the practitioners who use them.</p>
+      <p class="lede" style="margin-top:14px;max-width:680px">We're on a mission to bring citizens, scientists, builders, artists, and policymakers together to design real, community-led solutions to climate challenges.</p>
+      <div style="margin-top:26px">
         <div class="row"><span class="idx">01</span><div>
-          <h3>Independence is the product</h3>
-          <p>We are not a government contractor and we do not take work that would make a community reasonably suspect otherwise. That constraint costs us revenue. It is also the only reason communities talk to us candidly, which is the entire asset.</p>
+          <h3>We research</h3>
+          <p>Why climate, land and ocean decisions keep failing the people who live with the consequences, and what the evidence actually says about fixing it.</p>
         </div></div>
         <div class="row"><span class="idx">02</span><div>
-          <h3>One question, held narrowly</h3>
-          <p>We decline advocacy, generic capacity building, and most adjacent work. Radical narrowness is not a limitation we apologise for — it is what makes the answers worth anything.</p>
+          <h3>We experiment</h3>
+          <p>Methods get designed, run in real climate processes, and redesigned to fit our evolving needs.</p>
         </div></div>
         <div class="row"><span class="idx">03</span><div>
-          <h3>We interrogate participation, we do not sell it</h3>
-          <p>Our library carries the evidence that participation frequently fails and leaves power exactly where it was. If we only published the case for our own methods, you would be right not to trust us.</p>
+          <h3>We mobilize and practice together</h3>
+          <p>A community of practitioners — community leaders, city officials, designers, artists, scientists — uses the methods and reports back.</p>
         </div></div>
         <div class="row"><span class="idx">04</span><div>
-          <h3>Close the loop, publicly</h3>
-          <p>Within sixty days of any process: what we heard, what changed, what did not change and why. Published, and sent to every participant. It builds more trust than any other single design choice.</p>
+          <h3>We educate</h3>
+          <p>We share what we learn and make it accessible to all in the hopes that we can change the culture around climate decision-making.</p>
         </div></div>
       </div>
     </div>
   </div>
 
   <div class="wrap" style="padding-bottom:90px">
-    <div class="rowhead" style="margin-top:64px"><h2>Who we are</h2></div>
-    <div class="grid g3">
-      <div class="card">
-        <div class="avatar" style="margin-bottom:14px">JN</div>
-        <h3>Jess Newfield</h3>
-        <p class="small" style="margin:4px 0 8px">Co-founder and director</p>
-        <p>Governance design, regenerative economics and ocean stewardship.</p>
-      </div>
-      <div class="card">
-        <div class="avatar" style="margin-bottom:14px">VK</div>
-        <h3>Vanessa K.</h3>
-        <p class="small" style="margin:4px 0 8px">Co-founder, strategy</p>
-        <p>Programme architecture and the practice of turning method into institution.</p>
-      </div>
-      <div class="card">
-        <div class="avatar" style="margin-bottom:14px">OZ</div>
-        <h3>Olivia Zeydler</h3>
-        <p class="small" style="margin:4px 0 8px">Co-founder, research</p>
-        <p>Comparative research on deliberative processes and climate governance.</p>
-      </div>
-    </div>
-
-    <div class="card plain" style="margin-top:44px;border:1px solid var(--rule)">
+    <div class="card plain" style="margin-top:56px;border:1px solid var(--rule)">
       <h3>Where we started</h3>
-      <p style="margin-top:8px">CFF launched publicly at the ChangeNOW Summit in Paris in April 2026, with a workshop on inclusive governance methods for climate resilience run with Climate House. The Governance Traps diagnostic came out of that room.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== WORK ===================== -->
-<section class="pg" id="pg-work">
-  <header class="hero">
-    <div class="wrap">
-      <h1>Methods, and the <em>evidence</em> behind them</h1>
-      <p class="lede" style="margin-top:22px">We build practical governance methods, test them in live processes, and publish what happened — including where they failed.</p>
-    </div>
-  </header>
-
-  <div class="band">
-    <div class="wrap">
-      <div class="rowhead">
-        <h2>Four ways good projects fail</h2>
-        <p>A shared diagnostic language. Most stalled climate projects are stuck in one of these, and naming it is half the work.</p>
-      </div>
-      <div class="grid g4" id="work-traps"><button class="trap" data-trap="speed" aria-pressed="false"><svg class="ring" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="#8B52FF" stroke-width="1.8"></circle><circle cx="12" cy="12" r="7.5" fill="none" stroke="#8B52FF" stroke-width="1.8" opacity=".5"></circle></svg><h3>Speed vs. legitimacy</h3><p>The deadline was real, so you skipped the process. The backlash cost more time than the process would have.</p><span class="n">2 resources →</span></button><button class="trap" data-trap="silo" aria-pressed="false"><svg class="ring" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="#8B52FF" stroke-width="1.8"></circle><circle cx="12" cy="12" r="7.5" fill="none" stroke="#8B52FF" stroke-width="1.8" opacity=".5"></circle></svg><h3>Siloed systems</h3><p>Three teams, three engagement processes. The community lives all of it as one crisis.</p><span class="n">3 resources →</span></button><button class="trap" data-trap="account" aria-pressed="false"><svg class="ring" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="#8B52FF" stroke-width="1.8"></circle><circle cx="12" cy="12" r="7.5" fill="none" stroke="#8B52FF" stroke-width="1.8" opacity=".5"></circle></svg><h3>Accountability gaps</h3><p>Good insights, strong report, then nothing. Nobody owns what happens next.</p><span class="n">6 resources →</span></button><button class="trap" data-trap="theatre" aria-pressed="false"><svg class="ring" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="#8B52FF" stroke-width="1.8"></circle><circle cx="12" cy="12" r="7.5" fill="none" stroke="#8B52FF" stroke-width="1.8" opacity=".5"></circle></svg><h3>Participation theatre</h3><p>Consultation happened. The decision was already made, and everyone knew it.</p><span class="n">8 resources →</span></button></div>
-    </div>
-  </div>
-
-  <div class="wrap" style="padding-top:76px">
-    <div class="rowhead"><h2>The implementation blueprint</h2><p>Five steps. Deliberately short enough to use on a Monday.</p></div>
-    <div>
-      <div class="row"><span class="idx">01</span><div><h3>Define the decision and mandate</h3><p>Name exactly what is being decided, who holds authority, what the community can influence, and what is fixed. Ambiguity here guarantees a later failure.</p></div></div>
-      <div class="row"><span class="idx">02</span><div><h3>Choose the method</h3><p>Match the decision type to the tool. Contested trade-off, a citizens' jury. Investment allocation, participatory budgeting. Broad policy input, a citizen dialogue. Time-compressed design, a sprint.</p></div></div>
-      <div class="row"><span class="idx">03</span><div><h3>Design participation with power</h3><p>Recruit those most affected and least heard. Build in accessibility. State the pathway from input to decision explicitly, before you start.</p></div></div>
-      <div class="row"><span class="idx">04</span><div><h3>Build accountability</h3><p>Name the person responsible for acting on what is heard. Set a public reporting date. Publish the decision-rights map before the process opens.</p></div></div>
-      <div class="row"><span class="idx">05</span><div><h3>Close the loop</h3><p>Within sixty days, publish what you heard, what changed, what did not, and why. Send it to every participant.</p></div></div>
-    </div>
-  </div>
-
-  <div class="band">
-    <div class="wrap">
-      <div class="rowhead"><h2>Selected work</h2></div>
-      <div class="grid g2">
-        <div class="card">
-          <p class="eyebrow" style="margin-bottom:10px">2024 – 2025</p>
-          <h3>Community-to-negotiation pathway, UNOC3</h3>
-          <p style="margin-top:8px">27 citizen dialogues across coastal communities, synthesised into briefs that reached delegations at the UN Ocean Conference. The pilot that proved the pathway holds under real diplomatic conditions.</p>
-        </div>
-        <div class="card">
-          <p class="eyebrow" style="margin-bottom:10px">April 2026</p>
-          <h3>Resilience by design, ChangeNOW Paris</h3>
-          <p style="margin-top:8px">A workshop with Climate House for funders, government and startups. Real cases, successful and failed, and a stakeholder simulation. Where the Governance Traps diagnostic was first tested publicly.</p>
-        </div>
-        <div class="card">
-          <p class="eyebrow" style="margin-bottom:10px">In development</p>
-          <h3>Tide Lines, Tanzania</h3>
-          <p style="margin-top:8px">Two cohorts of coastal youth over two years, with a community co-lead on site. Ocean stewardship built from local authority rather than external programming.</p>
-        </div>
-        <div class="card">
-          <p class="eyebrow" style="margin-bottom:10px">Open</p>
-          <h3>The Governance Traps diagnostic</h3>
-          <p style="margin-top:8px">A shared language for naming why a project has stalled. Free to use, free to adapt. It is the front door to our library.</p>
-        </div>
-      </div>
+      <p style="margin-top:8px">CFF launched publicly at the ChangeNOW Summit in Paris in April 2026, with a workshop on inclusive governance methods for climate resilience run with C3Labs and Climate House.</p>
     </div>
   </div>
 </section>
@@ -388,9 +317,9 @@ footer .wrap{padding-top:64px;padding-bottom:48px}
 <section class="pg" id="pg-library">
   <header class="hero">
     <div class="wrap">
-      <h1>Everything we know about <em>letting people in</em></h1>
-      <p class="lede" style="margin-top:22px">A working collection on participatory governance, regenerative design and inclusive planning. Every entry is annotated, because a link without a reason is just a bookmark.</p>
-      <p class="small" style="margin-top:24px"><span id="total">16</span> resources · last reviewed August 2026</p>
+      <h1>Everything we know about <em>letting people in</em>.</h1>
+      <p class="lede" style="margin-top:22px">A working collection on participatory governance, regenerative design and inclusive planning. Every entry is annotated with instructions for implementation.</p>
+      <p class="small" style="margin-top:24px"><span id="total">57</span> resources · last reviewed August 2026</p>
     </div>
   </header>
 
@@ -414,250 +343,43 @@ footer .wrap{padding-top:64px;padding-bottom:48px}
       <span id="status">Showing 16 of 16 resources</span>
       <button class="clear" id="clear" hidden="">Clear filters</button>
     </div>
-    <div class="results" id="results">
-    <article class="item">
-      <div class="item-top">
-        <div><h3>A ladder of citizen participation</h3><p class="meta">Sherry Arnstein · 1969 · 12 min</p></div>
-        <span class="kind">Paper</span>
-      </div>
-      <p class="why">The origin text for participation without power. Everything since is a footnote or a refinement.</p>
-      <div class="tags">
-        <span class="tag">Participation theatre</span>
-        <span class="tag">Foundations</span>
-      </div>
-      <div class="note"><p class="by">Practice note · Ailars D., Tanzania</p><blockquote>We printed the ladder and asked the ward committee to place our own project on it. Uncomfortable, useful, took ten minutes.</blockquote></div>
-    </article>
-    <article class="item">
-      <div class="item-top">
-        <div><h3>Varieties of participation in complex governance</h3><p class="meta">Archon Fung · 2006 · 25 min</p></div>
-        <span class="kind">Paper</span>
-      </div>
-      <p class="why">The democracy cube — who takes part, how they communicate, how much authority they actually hold. Use it to design a process instead of picking a method off a shelf.</p>
-      <div class="tags">
-        <span class="tag">Participation theatre</span><span class="tag">Accountability gaps</span>
-        <span class="tag">Foundations</span><span class="tag">Design</span>
-      </div>
-      
-    </article>
-    <article class="item">
-      <div class="item-top">
-        <div><h3>Finding the spaces for change: a power cube analysis</h3><p class="meta">John Gaventa · 2006 · 20 min</p></div>
-        <span class="kind">Paper</span>
-      </div>
-      <p class="why">Closed, invited and claimed spaces. The clearest map of where an outside convenor can and cannot operate.</p>
-      <div class="tags">
-        <span class="tag">Participation theatre</span>
-        <span class="tag">Foundations</span><span class="tag">Power</span>
-      </div>
-      
-    </article>
-    <article class="item">
-      <div class="item-top">
-        <div><h3>Governing the commons</h3><p class="meta">Elinor Ostrom · 1990 · 280 pp</p></div>
-        <span class="kind">Book</span>
-      </div>
-      <p class="why">Design principles for institutions communities run themselves. The empirical rebuttal to 'communities can't handle complexity'.</p>
-      <div class="tags">
-        <span class="tag">Accountability gaps</span>
-        <span class="tag">Foundations</span><span class="tag">Commons</span>
-      </div>
-      
-    </article>
-    <article class="item">
-      <div class="item-top">
-        <div><h3>Leverage points: places to intervene in a system</h3><p class="meta">Donella Meadows · 1999 · 18 min</p></div>
-        <span class="kind">Paper</span>
-      </div>
-      <p class="why">Short, free, and the fastest cure for departmental thinking we know of.</p>
-      <div class="tags">
-        <span class="tag">Siloed systems</span>
-        <span class="tag">Systems</span>
-      </div>
-      <div class="note"><p class="by">Practice note · CFF</p><blockquote>We open most workshops with points 12 through 9. It reliably changes what people argue about for the rest of the day.</blockquote></div>
-    </article>
-    <article class="item">
-      <div class="item-top">
-        <div><h3>Seeing like a state</h3><p class="meta">James C. Scott · 1998 · 445 pp</p></div>
-        <span class="kind">Book</span>
-      </div>
-      <p class="why">Why schemes to improve the human condition fail when they can only see what they can count.</p>
-      <div class="tags">
-        <span class="tag">Siloed systems</span><span class="tag">Speed vs. legitimacy</span>
-        <span class="tag">Planning</span>
-      </div>
-      
-    </article>
-    <article class="item">
-      <div class="item-top">
-        <div><h3>Catching the deliberative wave</h3><p class="meta">OECD · 2020 · 190 pp</p></div>
-        <span class="kind">Report</span>
-      </div>
-      <p class="why">Close to 300 deliberative cases, twelve models, and an honest account of the design trade-offs. The standard reference.</p>
-      <div class="tags">
-        <span class="tag">Accountability gaps</span>
-        <span class="tag">Methods</span><span class="tag">Evidence</span>
-      </div>
-      
-    </article>
-    <article class="item">
-      <div class="item-top">
-        <div><h3>Eight ways to institutionalise deliberative democracy</h3><p class="meta">OECD · 2021 · 90 pp</p></div>
-        <span class="kind">Report</span>
-      </div>
-      <p class="why">The direct answer to accountability gaps: stop running one-offs and build the mandate in.</p>
-      <div class="tags">
-        <span class="tag">Accountability gaps</span>
-        <span class="tag">Methods</span>
-      </div>
-      
-    </article>
-    <article class="item">
-      <div class="item-top">
-        <div><h3>OECD deliberative database</h3><p class="meta">OECD · 2023 · 733 cases</p></div>
-        <span class="kind">Tool</span>
-      </div>
-      <p class="why">Find a comparator process in under five minutes. Filter by country, topic and model.</p>
-      <div class="tags">
-        <span class="tag">Accountability gaps</span>
-        <span class="tag">Methods</span><span class="tag">Evidence</span>
-      </div>
-      
-    </article>
-    <article class="item">
-      <div class="item-top">
-        <div><h3>How to run a civic lottery</h3><p class="meta">MASS LBP · 2017 · 40 pp</p></div>
-        <span class="kind">Guide</span>
-      </div>
-      <p class="why">The definitive short handbook on sortition mechanics. Everything you need to recruit a panel properly.</p>
-      <div class="tags">
-        <span class="tag">Participation theatre</span>
-        <span class="tag">Methods</span>
-      </div>
-      
-    </article>
-    <article class="item">
-      <div class="item-top">
-        <div><h3>Participation: the new tyranny?</h3><p class="meta">Cooke and Kothari (eds.) · 2001 · 220 pp</p></div>
-        <span class="kind">Book</span>
-      </div>
-      <p class="why">The field's necessary self-critique. Keeping this on the shelf is how we signal that we interrogate participation rather than sell it.</p>
-      <div class="tags">
-        <span class="tag">Participation theatre</span>
-        <span class="tag crit">Critical</span>
-      </div>
-      
-    </article>
-    <article class="item">
-      <div class="item-top">
-        <div><h3>Localizing development: does participation work?</h3><p class="meta">Mansuri and Rao · 2013 · 330 pp</p></div>
-        <span class="kind">Report</span>
-      </div>
-      <p class="why">The large-N evidence review. Sobering, essential, and the first thing to read before promising a funder that participation improves outcomes.</p>
-      <div class="tags">
-        <span class="tag">Participation theatre</span>
-        <span class="tag crit">Critical</span><span class="tag">Evidence</span>
-      </div>
-      
-    </article>
-    <article class="item">
-      <div class="item-top">
-        <div><h3>Participatory approaches to climate adaptation: a systematic review</h3><p class="meta">Parsons et al., Ambio · 2025 · 22 min</p></div>
-        <span class="kind">Paper</span>
-      </div>
-      <p class="why">Finds that most participatory approaches leave power imbalances intact — and identifies the minority that genuinely redistribute decision-making.</p>
-      <div class="tags">
-        <span class="tag">Participation theatre</span><span class="tag">Accountability gaps</span>
-        <span class="tag crit">Critical</span><span class="tag">Evidence</span>
-      </div>
-      
-    </article>
-    <article class="item">
-      <div class="item-top">
-        <div><h3>Thank you for the rain</h3><p class="meta">Nyström and Rasmussen · 2017 · 87 min</p></div>
-        <span class="kind">Film</span>
-      </div>
-      <p class="why">A Kenyan farmer carries his community's evidence to COP21. The community-to-negotiation pathway, on film.</p>
-      <div class="tags">
-        <span class="tag">Participation theatre</span>
-        <span class="tag">Ocean and coastal</span><span class="tag">Onboarding</span>
-      </div>
-      <div class="note"><p class="by">Practice note · CFF</p><blockquote>Watch-along on 14 September. The best single thing to send a funder who doesn't yet understand why the pathway matters.</blockquote></div>
-    </article>
-    <article class="item">
-      <div class="item-top">
-        <div><h3>Room for the River</h3><p class="meta">Rijkswaterstaat, Netherlands · 2019 · Programme record</p></div>
-        <span class="kind">Case</span>
-      </div>
-      <p class="why">A long participatory front end that produced faster delivery, not slower. The clearest evidence against the speed trap.</p>
-      <div class="tags">
-        <span class="tag">Speed vs. legitimacy</span>
-        <span class="tag">Planning</span><span class="tag">Water</span>
-      </div>
-      
-    </article>
-    <article class="item">
-      <div class="item-top">
-        <div><h3>Amsterdam City Doughnut</h3><p class="meta">DEAL and City of Amsterdam · 2020 · 75 pp</p></div>
-        <span class="kind">Case</span>
-      </div>
-      <p class="why">One integrated frame across portfolios that would otherwise never meet. A working answer to siloed systems.</p>
-      <div class="tags">
-        <span class="tag">Siloed systems</span>
-        <span class="tag">Regenerative</span><span class="tag">Planning</span>
-      </div>
-      
-    </article></div>
+    <div class="results" id="results"></div>
   </div>
 
   <div class="band-alt">
-    <div class="wrap narrow">
+    <div class="wrap">
       <h2>Used something here that worked?</h2>
-      <p style="margin:12px 0 24px;font-size:14.5px;line-height:1.7">Add a practice note, or suggest a resource we've missed. Notes are what make this a community of practice rather than a reading list. Reviewed monthly.</p>
+      <p style="margin:12px 0 24px;font-size:14.5px;line-height:1.7;max-width:640px">Add a note on something you ran, or suggest a resource we've missed. Notes are what make this a community of practice rather than a reading list. Everything is credited, and reviewed monthly.</p>
       <a class="btn-light" href="#contact" data-pg="contact">Contribute to the library</a>
     </div>
   </div>
 </section>
 
-<!-- ===================== JOURNAL ===================== -->
-<section class="pg" id="pg-journal">
+<!-- ===================== COMMUNITY ===================== -->
+<section class="pg" id="pg-community">
   <header class="hero">
     <div class="wrap">
-      <h1>The <em>field journal</em></h1>
-      <p class="lede" style="margin-top:22px">A place for conversation to unlearn and reimagine our economic and political systems for a regenerative future. Written from inside the work, monthly, in the first person.</p>
-      <div style="margin-top:28px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-        <input class="search" style="max-width:280px" type="email" placeholder="you@organisation.org" aria-label="Email address">
-        <button class="btn">Subscribe</button>
-      </div>
+      <p class="eyebrow">Community of practice</p>
+      <h1>Where participatory governance <em>actually happens</em></h1>
+      <p class="lede" style="margin-top:22px">The methods on this site were built by practitioners running real processes, and they only stay useful if that keeps happening. The community of practice is where the magic of participatory governance happens.</p>
     </div>
   </header>
 
-  <div class="wrap" style="padding-top:92px;padding-bottom:90px">
-    <div class="rowhead"><h2>Recent issues</h2></div>
-    <div>
-      <div class="issue">
-        <span class="no">01</span>
-        <div class="body">
-          <p class="date">July 2026</p>
-          <h3>The room where it doesn't happen</h3>
-          <p>What twenty-seven citizen dialogues taught us about the gap between being heard and being answered — and why the sixty-day memo matters more than the workshop.</p>
-        </div>
-      </div>
-      <div class="issue">
-        <span class="no">02</span>
-        <div class="body">
-          <p class="date">August 2026</p>
-          <h3>Against the participation industry</h3>
-          <p>Consultation is now a procurement line item. That is not the same as power moving, and conflating the two is how trust gets spent.</p>
-        </div>
-      </div>
-      <div class="issue">
-        <span class="no">03</span>
-        <div class="body">
-          <p class="date">Coming September</p>
-          <h3>Who owns the shoreline</h3>
-          <p>Co-ownership models for coastal and renewable assets, and what changes when a community holds equity rather than a consultation invitation.</p>
-        </div>
-      </div>
+  <div class="wrap" style="padding-top:80px">
+    <div class="rowhead"><h2>How to get involved</h2></div>
+    <div class="grid g2">
+      <div class="card"><h3>Quarterly practice sessions</h3><p>Twelve to twenty people, ninety minutes, online. One live case brought by a participant, worked through with the group.</p></div>
+      <div class="card"><h3>Monthly office hours</h3><p>Open, no agenda, no charge. Bring a process you're stuck in and we'll think about it with you for an hour.</p></div>
+      <div class="card"><h3>The practice library</h3><p>The living repository. Annotate an entry, add a note on something you ran, or flag a resource we've missed. Everything is credited.</p></div>
+      <div class="card"><h3>Field gatherings</h3><p>Seasonal in-person sessions for the community to meet and collaborate on a project together.</p></div>
+    </div>
+  </div>
+
+  <div class="band-alt">
+    <div class="wrap">
+      <h2>What we ask</h2>
+      <p style="margin:12px 0 24px;font-size:14.5px;line-height:1.7;max-width:640px">That you try working on this for real — designing, funding, delivering or living with a process, not researching the field from a distance. And that when you use something from here, you tell us your findings.</p>
+      <a class="btn-light" href="#contact" data-pg="contact">Start a conversation</a>
     </div>
   </div>
 </section>
@@ -666,6 +388,7 @@ footer .wrap{padding-top:64px;padding-bottom:48px}
 <section class="pg" id="pg-contact">
   <header class="hero">
     <div class="wrap">
+      <p class="eyebrow">Reach us</p>
       <h1>Start a <em>conversation</em></h1>
       <p class="lede" style="margin-top:22px">Whether you're stuck in a process, want to suggest a resource, or think there's work here we should be doing together.</p>
     </div>
@@ -691,17 +414,18 @@ footer .wrap{padding-top:64px;padding-bottom:48px}
       </div>
 
       <div>
+        <h2 style="font-size:19px;margin-bottom:14px">Other ways to connect</h2>
         <div class="card plain" style="border:1px solid var(--rule);margin-bottom:12px">
           <h3>Community of practice</h3>
-          <p style="margin-top:8px">A quarterly session for practitioners working on the same question. Twelve to twenty people, deliberately small.</p>
+          <p style="margin-top:8px">A quarterly session for practitioners working on the same question.</p>
         </div>
         <div class="card plain" style="border:1px solid var(--rule);margin-bottom:12px">
-          <h3>Office hours</h3>
-          <p style="margin-top:8px">Monthly, open, no agenda. Bring a live problem and we'll think about it with you.</p>
-        </div>
-        <div class="card plain" style="border:1px solid var(--rule)">
           <h3>Press and speaking</h3>
           <p style="margin-top:8px">For media, panels and workshops, use the form and pick the speaking option.</p>
+        </div>
+        <div class="card plain" style="border:1px solid var(--rule)">
+          <h3>Regenerative Realities</h3>
+          <p style="margin-top:8px">A monthly field journal to unlearn and reimagine our economic and political systems for a regenerative future. Subscribe to our newsletter to stay up to date on our research, community events, and what's been inspiring us lately.</p>
         </div>
       </div>
     </div>
@@ -712,23 +436,23 @@ footer .wrap{padding-top:64px;padding-bottom:48px}
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col">
+        <img class="footer-logo" src="assets/cff-logo.png" alt="Center for the Future" width="104" height="104">
         <a class="footer-email" href="mailto:team@centerforthefuture.earth"><span class="dot" aria-hidden="true"></span>team@centerforthefuture.earth</a>
         <nav class="footer-links" aria-label="Footer">
           <ul>
             <li><a href="#home" data-pg="home">Home</a></li>
             <li><a href="#about" data-pg="about">Who We Are</a></li>
-            <li><a href="#work" data-pg="work">Our Work</a></li>
+            <li><a href="#community" data-pg="community">Community</a></li>
           </ul>
           <ul>
-            <li><a href="#library" data-pg="library">Library</a></li>
-            <li><a href="#journal" data-pg="journal">Get Involved</a></li>
-            <li><a href="#contact" data-pg="contact">Contact</a></li>
+            <li><a href="#library" data-pg="library">Practice Library</a></li>
+            <li><a href="#contact" data-pg="contact">Contact Us</a></li>
           </ul>
         </nav>
       </div>
       <div class="footer-col">
         <h2>Subscribe to our newsletter!</h2>
-        <p>Regenerative Realities — our monthly field journal. Practice notes, project updates, and the occasional argument, sent straight to your inbox.</p>
+        <p>Regenerative Realities — our monthly field journal to unlearn and reimagine our economic and political systems for a regenerative future.</p>
         <form class="footer-form" onsubmit="return false">
           <label class="footer-field"><input type="text" placeholder="Your name" aria-label="Your name"></label>
           <label class="footer-field"><input type="email" placeholder="your@email.com" aria-label="Email address"></label>
@@ -742,7 +466,7 @@ footer .wrap{padding-top:64px;padding-bottom:48px}
 
 <script>
 /* ---------- routing ---------- */
-const PAGES = ['home','about','work','library','journal','contact'];
+const PAGES = ['home','about','library','community','contact'];
 function go(id){
   if(!PAGES.includes(id)) id='home';
   PAGES.forEach(p => document.getElementById('pg-'+p).classList.toggle('live', p===id));
@@ -764,35 +488,78 @@ const TRAPS = [
   {id:'theatre', name:'Participation theatre', blurb:'Consultation happened. The decision was already made, and everyone knew it.'}
 ];
 const DATA = [
-  {t:"A ladder of citizen participation",a:"Sherry Arnstein",y:1969,k:"Paper",m:"12 min",why:"The origin text for participation without power. Everything since is a footnote or a refinement.",traps:['theatre'],tags:['Foundations'],note:{by:"Ailars D., Tanzania",q:"We printed the ladder and asked the ward committee to place our own project on it. Uncomfortable, useful, took ten minutes."}},
-  {t:"Varieties of participation in complex governance",a:"Archon Fung",y:2006,k:"Paper",m:"25 min",why:"The democracy cube — who takes part, how they communicate, how much authority they actually hold. Use it to design a process instead of picking a method off a shelf.",traps:['theatre','account'],tags:['Foundations','Design']},
-  {t:"Finding the spaces for change: a power cube analysis",a:"John Gaventa",y:2006,k:"Paper",m:"20 min",why:"Closed, invited and claimed spaces. The clearest map of where an outside convenor can and cannot operate.",traps:['theatre'],tags:['Foundations','Power']},
-  {t:"Governing the commons",a:"Elinor Ostrom",y:1990,k:"Book",m:"280 pp",why:"Design principles for institutions communities run themselves. The empirical rebuttal to 'communities can't handle complexity'.",traps:['account'],tags:['Foundations','Commons']},
-  {t:"Leverage points: places to intervene in a system",a:"Donella Meadows",y:1999,k:"Paper",m:"18 min",why:"Short, free, and the fastest cure for departmental thinking we know of.",traps:['silo'],tags:['Systems'],note:{by:"CFF",q:"We open most workshops with points 12 through 9. It reliably changes what people argue about for the rest of the day."}},
-  {t:"Seeing like a state",a:"James C. Scott",y:1998,k:"Book",m:"445 pp",why:"Why schemes to improve the human condition fail when they can only see what they can count.",traps:['silo','speed'],tags:['Planning']},
-  {t:"Catching the deliberative wave",a:"OECD",y:2020,k:"Report",m:"190 pp",why:"Close to 300 deliberative cases, twelve models, and an honest account of the design trade-offs. The standard reference.",traps:['account'],tags:['Methods','Evidence']},
-  {t:"Eight ways to institutionalise deliberative democracy",a:"OECD",y:2021,k:"Report",m:"90 pp",why:"The direct answer to accountability gaps: stop running one-offs and build the mandate in.",traps:['account'],tags:['Methods']},
-  {t:"OECD deliberative database",a:"OECD",y:2023,k:"Tool",m:"733 cases",why:"Find a comparator process in under five minutes. Filter by country, topic and model.",traps:['account'],tags:['Methods','Evidence']},
-  {t:"How to run a civic lottery",a:"MASS LBP",y:2017,k:"Guide",m:"40 pp",why:"The definitive short handbook on sortition mechanics. Everything you need to recruit a panel properly.",traps:['theatre'],tags:['Methods']},
-  {t:"Participation: the new tyranny?",a:"Cooke and Kothari (eds.)",y:2001,k:"Book",m:"220 pp",why:"The field's necessary self-critique. Keeping this on the shelf is how we signal that we interrogate participation rather than sell it.",traps:['theatre'],tags:['Critical']},
-  {t:"Localizing development: does participation work?",a:"Mansuri and Rao",y:2013,k:"Report",m:"330 pp",why:"The large-N evidence review. Sobering, essential, and the first thing to read before promising a funder that participation improves outcomes.",traps:['theatre'],tags:['Critical','Evidence']},
-  {t:"Participatory approaches to climate adaptation: a systematic review",a:"Parsons et al., Ambio",y:2025,k:"Paper",m:"22 min",why:"Finds that most participatory approaches leave power imbalances intact — and identifies the minority that genuinely redistribute decision-making.",traps:['theatre','account'],tags:['Critical','Evidence']},
-  {t:"Thank you for the rain",a:"Nyström and Rasmussen",y:2017,k:"Film",m:"87 min",why:"A Kenyan farmer carries his community's evidence to COP21. The community-to-negotiation pathway, on film.",traps:['theatre'],tags:['Ocean and coastal','Onboarding'],note:{by:"CFF",q:"Watch-along on 14 September. The best single thing to send a funder who doesn't yet understand why the pathway matters."}},
-  {t:"Room for the River",a:"Rijkswaterstaat, Netherlands",y:2019,k:"Case",m:"Programme record",why:"A long participatory front end that produced faster delivery, not slower. The clearest evidence against the speed trap.",traps:['speed'],tags:['Planning','Water']},
-  {t:"Amsterdam City Doughnut",a:"DEAL and City of Amsterdam",y:2020,k:"Case",m:"75 pp",why:"One integrated frame across portfolios that would otherwise never meet. A working answer to siloed systems.",traps:['silo'],tags:['Regenerative','Planning']}
+  {t:"Room for the River programme",a:"Rijkswaterstaat, Netherlands",y:"2019",k:"Case",cat:"Cases",traps:['speed'],tag:"The slow front end that delivered faster.",desc:"A major flood-management programme that invested heavily in early participation and delivered largely on time and on budget. The clearest evidence against the speed trap.",howto:"Use this as the counter-case in your business case. Build a two-column comparison: time added by front-loaded participation, versus documented delay costs from consultation failures on comparable local schemes. Present the net figure to whoever controls the timeline.",link:null},
+
+  {t:"Beyond Markets and States: Polycentric Governance (Nobel lecture)",a:"Elinor Ostrom",y:"2009",k:"Video",cat:"Foundations",traps:['silo'],tag:"Why local action isn't a consolation prize for global failure.",desc:"The lecture that condensed a career into one argument: governance works at many nested levels at once, and the state–market binary is too narrow to describe reality.",howto:"Use the polycentricity argument when a funder asks why you work locally on a global problem. The slides and full text are free — the one-page diagram of nested decision centres is the most useful single artefact for that conversation.",link:"https://www.nobelprize.org/prizes/economic-sciences/2009/ostrom/lecture/"},
+  {t:"Seeing Like a State",a:"James C. Scott",y:"1998",k:"Book",cat:"Foundations",traps:['silo'],tag:"Why plans that only see what they count fail.",desc:"The definitive account of how legibility-driven, top-down schemes destroy the local knowledge that made a system work.",howto:"Before signing off a plan, list what your data cannot see: informal tenure, seasonal use, kinship obligations, undocumented livelihoods. Assign one person to go and find three things on that list. If nothing surfaces, your data collection is too narrow, not the place too simple.",link:null},
+  {t:"Leverage Points: Places to Intervene in a System",a:"Donella Meadows",y:"1999",k:"Paper",cat:"Systems",traps:['silo'],tag:"Twelve places to push, ranked by how much they move.",desc:"Short, free, and the fastest cure for departmental thinking available. Reliably changes what a room argues about.",howto:"Run a 45-minute session mapping your team's activity onto the twelve points. Most teams find everything clustered at points 12 to 9 — parameters, buffers, delays. Choose one intervention at point 4 or above (rules, self-organisation, goals) and make it a named workstream with an owner.",link:"https://donellameadows.org/archives/leverage-points-places-to-intervene-in-a-system/"},
+  {t:"The Donella Meadows Project archive",a:"Academy for Systems Change",y:"—",k:"Tool",cat:"Systems",traps:['silo'],tag:"The full free archive, including Dancing with Systems.",desc:"Complete open archive of Meadows' articles and columns, maintained as a teaching resource.",howto:"Pair Leverage Points with Dancing with Systems for any session on humility in intervention. The second essay is the corrective to teams that read the first and conclude they should go straight for paradigm change.",link:"https://www.academyforchange.org/donella-meadows-project"},
+  {t:"Amsterdam City Doughnut",a:"DEAL, C40, Circle Economy, Biomimicry 3.8",y:"2020",k:"Case",cat:"Regenerative",traps:['silo'],tag:"One frame that portfolios which never meet can share.",desc:"The first city to publish a downscaled Doughnut and adopt it as a planning vision. A working answer to siloed systems at municipal scale.",howto:"Use the four City Portrait lenses — local-social, local-ecological, global-social, global-ecological — as the agenda for a single cross-departmental workshop. The value is not the data. It is that housing, energy and social services argue in one frame for the first time.",link:"https://www.c40knowledgehub.org/s/article/Creating-City-Portraits-A-methodological-guide-from-the-Thriving-Cities-Initiative?language=en_US"},
+  {t:"Creating City Portraits: A Methodological Guide",a:"Thriving Cities Initiative",y:"2020",k:"Guide",cat:"Regenerative",traps:['silo'],tag:"How to downscale the Doughnut to your place.",desc:"The step-by-step method behind the Amsterdam portrait, written to be used by anyone, not just C40 cities.",howto:"Start with the qualitative Community Portrait rather than the data portrait. It needs no dataset, runs as a participatory workshop, and produces the shared language you will need before any indicator argument becomes productive.",link:"https://www.c40knowledgehub.org/s/article/Creating-City-Portraits-A-methodological-guide-from-the-Thriving-Cities-Initiative?language=en_US"},
+  {t:"weADAPT knowledge base",a:"weADAPT / Stockholm Environment Institute",y:"—",k:"Tool",cat:"Adaptation",traps:['silo'],tag:"The working library for community-based adaptation.",desc:"Practitioner-contributed case studies, methods and syntheses across adaptation practice.",howto:"Search for your ecosystem and region before designing a new methodology. Most adaptation methods have been tried in a comparable setting; adapting a documented one saves weeks and gives you a citation when a funder asks why this approach.",link:"https://weadapt.org/knowledge-base/community-based-adaptation/principles-for-locally-led-adaptation/"},
+  {t:"Pol.is",a:"The Computational Democracy Project",y:"—",k:"Tool",cat:"Platforms",traps:['silo'],tag:"Find where a divided group actually agrees.",desc:"Open-source wiki-survey software for large groups. Surfaces consensus across factions rather than amplifying the loudest position. Used in Taiwan's vTaiwan process.",howto:"Use it at the front of a process, not the end. Run a conversation to identify statements that cross factional lines, then take only those into the deliberative room. It stops assemblies spending their first day rediscovering the obvious disagreements.",link:"https://pol.is"},
+  {t:"KoboToolbox",a:"KoboToolbox",y:"—",k:"Tool",cat:"Platforms",traps:['silo'],tag:"Offline-capable data collection, free for humanitarian use.",desc:"The most widely used data collection tool in humanitarian settings. Works without connectivity and syncs later.",howto:"Design forms with community enumerators, not for them. Enumerator-designed questions surface local categories your survey instrument does not have, and the resulting data is both better and locally owned.",link:"https://kobo.fao.org/"},
+  {t:"Kibera Public Space Project",a:"KDI / WRI Ross Center Prize for Cities",y:"—",k:"Case",cat:"Urban",traps:['silo'],tag:"Flood risk, sanitation and public space, solved together.",desc:"A network of community-managed spaces that reduce flood risk while providing services and business opportunities — without demolishing existing housing.",howto:"Use this as the argument against single-issue infrastructure projects. One site addressing drainage, sanitation, income and public space is cheaper than four programmes, and it is the community's own framing rather than a donor's.",link:"https://prizeforcities.org/project/kibera-public-space-project"},
+  {t:"The Death and Life of Great American Cities",a:"Jane Jacobs",y:"1961",k:"Book",cat:"Urban",traps:['silo'],tag:"Look at the street before you look at the plan.",desc:"The foundational argument for observed reality over abstract planning models.",howto:"Institute a walking observation requirement: no plan proposed for a place until the proposer has spent four unstructured hours there at two different times of day, and written a page on what they saw. It is the cheapest quality control in planning.",link:null},
+  {t:"The Human Scale",a:"Andreas Dalsgaard",y:"2012",k:"Film",cat:"Urban",traps:['silo'],tag:"What cities look like when you design for people.",desc:"Jan Gehl's work across five cities, and the argument that alienation in city life is a design outcome rather than a human one.",howto:"Best used with technical audiences who think participation is a soft add-on. It makes the case in the language of measurement and observation, which lands differently than a rights argument.",link:"https://docuseek2.com/ks-ths"},
+  {t:"99% Invisible",a:"Roman Mars",y:"—",k:"Podcast",cat:"Listening",traps:['silo'],tag:"The accessible on-ramp to design thinking.",desc:"Narrative design and architecture podcast. The Not Built For This series specifically covers communities bootstrapping their own climate survival.",howto:"Send the Not Built For This series to anyone new to the field. It teaches the systems argument through story, which is a better first exposure than a framework — and it means your induction reading is something people actually finish.",link:"https://99percentinvisible.org/about/the-show/"},
+  {t:"Designing Regenerative Cultures",a:"Daniel Christian Wahl",y:"2016",k:"Book",cat:"Regenerative",traps:['silo'],tag:"Live the questions rather than answer them.",desc:"Widely used entry point to regenerative thinking, built around more than 250 questions rather than prescriptions.",howto:"Use its question-framing discipline in workshop design: replace every 'how do we solve X' prompt with 'what would it take for X'. The second phrasing consistently produces systemic answers where the first produces intervention lists.",link:"https://www.danielchristianwahl.com/englishbook"},
+  {t:"Regenerative Development and Design",a:"Pamela Mang and Ben Haggard (Regenesis)",y:"2016",k:"Book",cat:"Regenerative",traps:['silo'],tag:"Start with the place, not the programme.",desc:"The Story of Place methodology: understanding a place's own patterns before proposing an intervention.",howto:"Before your next scoping trip, spend a day building a place story — geology, water, historical livelihoods, migration — and present it back to the community for correction. The corrections are the most valuable data you will collect, and offering your understanding for correction is a different relationship from extracting information.",link:null},
+  {t:"Sand Talk",a:"Tyson Yunkaporta",y:"2019",k:"Book",cat:"Regenerative",traps:['silo'],tag:"Indigenous systems thinking, and a corrective.",desc:"A necessary counterweight to Western regenerative framing, including of the regenerative field itself.",howto:"Read it alongside the regenerative canon rather than after it. Its usefulness is as a check on the assumption that regenerative practice is itself culturally neutral.",link:null},
+
+  {t:"Governing the Commons",a:"Elinor Ostrom",y:"1990",k:"Book",cat:"Foundations",traps:['account'],tag:"Communities can govern complexity. Here are the design rules.",desc:"Eight design principles for self-governing institutions drawn from centuries of real cases. The empirical rebuttal to the claim that communities cannot manage shared resources.",howto:"Audit any community-managed resource against the eight principles as a checklist: clear boundaries, local rule-making, monitoring, graduated sanctions, conflict resolution, recognised right to organise, nested governance. Wherever a principle is absent, you have found the likely failure point.",link:"https://ostromworkshop.indiana.edu/about/ostroms-history/nobel-prize/index.html"},
+  {t:"Porto Alegre: Participatory Budgeting and Sustaining Transformative Change",a:"World Resources Institute",y:"—",k:"Report",cat:"Critical",traps:['account'],tag:"Why the flagship case was suspended.",desc:"Analyses the conditions under which participatory budgeting sustains transformative change — and what happens when political support withdraws.",howto:"Use this to stress-test your own process against political change. If your design depends on a single supportive official remaining in post, you have built a project, not an institution.",link:"https://www.wri.org/research/porto-alegre-participatory-budgeting-and-challenge-sustaining-transformative-change"},
+  {t:"Eight Ways to Institutionalise Deliberative Democracy",a:"OECD",y:"2021",k:"Report",cat:"Methods",traps:['account'],tag:"Stop running one-offs. Build the mandate in.",desc:"The institutional answer to both the speed trap and the accountability gap: standing structures rather than repeated ad hoc processes.",howto:"Pick the lightest of the eight models your institution could adopt within a year — usually a standing citizens' panel with rotating membership. Draft a one-page mandate: who convenes, who must respond, within what timeframe. Take that page to the decision-maker rather than a proposal for another workshop.",link:"https://oecd-opsi.org/toolkits/how-to-run-a-civic-lottery/"},
+  {t:"Innovative Citizen Participation and New Democratic Institutions (Catching the Deliberative Wave)",a:"OECD",y:"2020",k:"Report",cat:"Methods",traps:['account'],tag:"Twelve models, 289 cases, trade-offs named honestly.",desc:"The standard reference. Identifies distinct deliberative models, what a successful process entails, and three routes to institutionalisation.",howto:"Use the twelve-model typology as a selection tool, not background reading. Match your decision type to a model — contested trade-off to a citizens' jury, budget allocation to participatory budgeting, broad input to a dialogue — then copy that model's documented design parameters rather than inventing your own.",link:"https://www.oecd.org/en/publications/innovative-citizen-participation-and-new-democratic-institutions_339306da-en.html"},
+  {t:"OECD Deliberative Democracy Database",a:"OECD",y:"2023",k:"Tool",cat:"Methods",traps:['account'],tag:"Find a comparator process in five minutes.",desc:"Hundreds of documented cases from 1979 onward, filterable by country, topic and model. The fastest way to answer 'has anyone done this before'.",howto:"Before you design, filter for your policy area and region and read three comparator cases. Extract their participant numbers, duration and budget. Those three figures give you a defensible proposal instead of a guess, and they are what commissioners always ask for.",link:"https://medium.com/participo/2023-trends-in-deliberative-democracy-oecd-database-update-c8802935f116"},
+  {t:"Participedia",a:"Participedia network",y:"—",k:"Tool",cat:"Methods",traps:['account'],tag:"A crowdsourced atlas of participation, worldwide.",desc:"Open database of cases, methods and organisations. Also a contribution channel — you can publish your own processes into it.",howto:"Two uses. Search your method before designing to find documented variants. Then write up one of your own completed processes as a case. It takes about two hours, it is peer-visible, and it builds public evidence of your practice at close to zero cost.",link:"https://participedia.net/"},
+  {t:"KNOCA — Knowledge Network on Climate Assemblies",a:"KNOCA",y:"—",k:"Tool",cat:"Methods",traps:['account'],tag:"The European clearing house for climate assembly design.",desc:"Briefings, evaluations and design guidance on climate assemblies, including what happened after the recommendations landed.",howto:"Read the evaluation briefings before the design briefings. They tell you which assemblies produced policy change and which produced reports, and the difference is almost always in the pre-agreed government response mechanism, not deliberation quality.",link:"https://www.knoca.eu/"},
+  {t:"newDemocracy Foundation research library",a:"newDemocracy Foundation",y:"—",k:"Guide",cat:"Methods",traps:['account'],tag:"The most operationally useful free material on running juries.",desc:"Practical handbooks from an organisation that runs processes rather than only studying them.",howto:"Use their remit-writing guidance first. A badly written remit — vague, or asking a question the authority cannot act on — is the most common cause of a wasted process, and it is fixable in an afternoon before anyone is recruited.",link:"https://www.newdemocracy.com.au/"},
+  {t:"Involve — methods and resources",a:"Involve UK",y:"—",k:"Guide",cat:"Methods",traps:['account'],tag:"Plain-language method cards for practitioners.",desc:"Accessible, practical guidance from a long-standing UK participation organisation.",howto:"Use the library as a shortlist generator, not a menu. Pick three candidate methods, then test each against one question: what decision does this produce, and who is obliged to act on it? Discard any method where the answer is 'insight'.",link:"https://participedia.net/organization/involve"},
+  {t:"Participatory Budgeting in Porto Alegre",a:"Participedia / multiple",y:"1989–",k:"Case",cat:"Cases",traps:['account'],tag:"The oldest participatory budget in the world, and its limits.",desc:"Thirty years of documented practice — including the political conditions under which it was later suspended. The honest version of the story, not the poster version.",howto:"Read the WRI analysis of why it faltered before designing any PB process. The four conditions it identifies — structure, resourcing, political commitment, and commitment to implement — are your risk register.",link:"https://participedia.net/case/5524"},
+  {t:"Principles for Locally Led Adaptation",a:"Global Commission on Adaptation / WRI",y:"2021",k:"Guide",cat:"Adaptation",traps:['account'],tag:"Eight principles, over 100 endorsing organisations.",desc:"The closest thing the adaptation field has to a shared standard, and a useful reference point for anyone building a quality mark.",howto:"Endorsement is cheap; self-assessment is the useful move. Score your portfolio against all eight principles honestly, and publish the two where you score worst alongside what you are doing about them. That asymmetry is what makes the claim credible.",link:"https://www.wri.org/initiatives/locally-led-adaptation/principles-locally-led-adaptation"},
+  {t:"Locally Led Adaptation: From Principles to Practice",a:"Global Center on Adaptation",y:"2022",k:"Report",cat:"Adaptation",traps:['account'],tag:"Twenty-one worked examples of devolving decisions.",desc:"Demystifies the mechanisms funders and governments can use to move money and authority closer to communities.",howto:"Identify which financing mechanism your funder could plausibly adopt, then propose that specific mechanism by name in your next grant conversation. Naming an existing instrument moves faster than arguing for a principle.",link:"https://weadapt.org/knowledge-base/community-based-adaptation/locally-led-adaptation-from-principles-to-practice/"},
+  {t:"Locally-Led Adaptation: moving from principles to practice in the water sector",a:"weADAPT",y:"2024",k:"Report",cat:"Adaptation",traps:['account'],tag:"An assessment framework, applied to six real cases.",desc:"Turns the LLA principles into something you can actually score a project against, with nature-based solutions added as a ninth principle.",howto:"Borrow the assessment framework wholesale for your own sector. Building a scoring rubric from scratch is a month of work; adapting a published one is an afternoon, and it comes with comparability built in.",link:"https://weadapt.org/knowledge-base/locally-led-adaptation-moving-from-principles-to-practice-in-the-water-sector/"},
+  {t:"Decidim",a:"Metadecidim community / Barcelona",y:"—",k:"Tool",cat:"Platforms",traps:['account'],tag:"Open-source participation infrastructure, used in 30+ countries.",desc:"Free and open-source platform supporting participatory processes, budgeting, consultations and assemblies, with traceability built in.",howto:"Do not self-host on a first project — the setup burden will eat your process design time. Use a managed provider for pilot one, and only bring it in-house once you know which modules you actually use.",link:"https://decidim.org/"},
+  {t:"CONSUL Democracy",a:"CONSUL Democracy Foundation",y:"—",k:"Tool",cat:"Platforms",traps:['account'],tag:"Free participation software used by 250+ cities.",desc:"Open-source platform for direct citizen participation processes, with a large institutional user base.",howto:"Compare against Decidim on one criterion before choosing: which has an active instance in a city comparable to yours, and can you call them? A live reference user matters more than a feature list.",link:"https://consuldemocracy.org/"},
+  {t:"Democracy Technologies platform database",a:"Democracy Technologies",y:"—",k:"Tool",cat:"Platforms",traps:['account'],tag:"Compare participation platforms side by side.",desc:"Comparative directory of civic technology platforms including Consul, Maptionnaire, Cap Collectif and LiquidFeedback.",howto:"Shortlist three platforms against your actual constraints — language support, offline fallback, data residency — before anyone demos anything. Platform selection driven by a sales call is the most reliable way to end up with a tool your community cannot use.",link:"https://democracy-technologies.org/database/"},
+  {t:"Slum Dwellers International — Know Your City",a:"SDI / UCLG / Cities Alliance",y:"—",k:"Tool",cat:"Urban",traps:['account'],tag:"Communities count themselves, and cities have to listen.",desc:"Community-led enumeration and settlement profiling, generating data owned by residents rather than about them.",howto:"Where official data on a settlement does not exist, community enumeration is not a second-best substitute — it is the negotiating asset. Budget for residents to collect and hold the data themselves before any external survey is commissioned.",link:"https://en.wikipedia.org/wiki/Slum_Dwellers_International"},
+  {t:"Blue Ventures",a:"Blue Ventures",y:"2003–",k:"Case",cat:"Ocean and coastal",traps:['account'],tag:"LMMAs now cover almost a fifth of Madagascar's inshore seabed.",desc:"Locally led marine conservation built on community-owned data and legal recognition, replicated across hundreds of sites and eight countries.",howto:"Look at the temporary octopus closure model as a transferable design: a short, community-set closure with a visible economic return on reopening. It builds the trust that longer-term measures need, and it is legible within one season rather than one decade.",link:"https://blueventures.org/"},
+  {t:"Towards a Network of Locally Managed Marine Areas in the Western Indian Ocean",a:"Rocliffe, Peabody, Samoilys and Hawkins, PLOS ONE",y:"2014",k:"Paper",cat:"Ocean and coastal",traps:['account'],tag:"The first regional inventory of community-managed marine areas.",desc:"Open-access assessment of LMMAs across Kenya, Madagascar, Mozambique and Tanzania, including the legal frameworks that enable or block them.",howto:"Read the legal framework section for your country before designing any coastal governance work. The paper identifies exactly where national law does and does not recognise community management — which determines whether your agreement is enforceable or ceremonial.",link:"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4108387/"},
+  {t:"Frontiers of Commoning",a:"David Bollier / Schumacher Center",y:"—",k:"Podcast",cat:"Listening",traps:['account'],tag:"Monthly conversations with people building commons.",desc:"The closest audio fit to a commons-and-governance thesis. Practitioners describing working institutions, not theory.",howto:"Use it for recruitment rather than research. When you need a speaker or comparator practitioner for a session, the guest list is effectively a curated directory of people already doing the work. Transcripts are published, so you can search before you listen.",link:"https://www.bollier.org/transcripts-frontiers-commoning"},
+
+  {t:"A Ladder of Citizen Participation",a:"Sherry Arnstein",y:"1969",k:"Paper",cat:"Foundations",traps:['theatre'],tag:"Participation without power is decoration.",desc:"The origin text. Eight rungs from manipulation to citizen control. Everything written since is a footnote or a refinement.",howto:"Print the ladder and put it in front of your project team. Ask each person to place your current process on a rung, privately, then compare answers. The spread between where staff think they are and where community members think they are is your real diagnostic.",link:"https://organizingengagement.org/models/ladder-of-citizen-participation/"},
+  {t:"Varieties of Participation in Complex Governance",a:"Archon Fung",y:"2006",k:"Paper",cat:"Foundations",traps:['theatre'],tag:"Three questions that turn a method into a design.",desc:"The democracy cube: who participates, how they communicate, and how much authority they hold. The tool for designing a process rather than picking a method off a shelf.",howto:"Before choosing any method, answer Fung's three axes on one page: who is in the room, what mode of exchange you are asking of them, and what authority their output carries. If you cannot answer the third, you are not ready to convene.",link:"https://faculty.fiu.edu/~revellk/pad3003/Fung.pdf"},
+  {t:"The Power Cube — powercube.net",a:"John Gaventa and IDS",y:"2009",k:"Tool",cat:"Foundations",traps:['theatre'],tag:"Closed, invited, claimed. Know which room you're in.",desc:"A full toolbox for power analysis built around spaces, levels and forms of power. The clearest map of where an outside convenor can and cannot operate.",howto:"Map your project across all three dimensions on a single grid before designing. Then ask the uncomfortable question: is this an invited space created by the powerful? If so, name that openly with participants at the start rather than letting them discover it at the end.",link:"https://www.powercube.net/wp-content/uploads/2010/01/PowerPack_web_version.pdf"},
+  {t:"Design Justice: Community-Led Practices to Build the Worlds We Need",a:"Sasha Costanza-Chock",y:"2020",k:"Book",cat:"Foundations",traps:['theatre'],tag:"Who gets to design, and who gets designed for.",desc:"The strongest bridge between design practice and inclusion. Free to read in full, which makes it the most shareable serious text in the collection.",howto:"Adopt the Design Justice Network Principles as an explicit annex to your next project scope. The highest-leverage single move is centring the voices of those directly impacted — operationalise it by naming which impacted group holds sign-off on which decision.",link:"https://direct.mit.edu/books/oa-monograph/4605/Design-JusticeCommunity-Led-Practices-to-Build-the"},
+  {t:"Participation: The New Tyranny?",a:"Bill Cooke and Uma Kothari (eds.)",y:"2001",k:"Book",cat:"Critical",traps:['theatre'],tag:"The field's necessary self-critique.",desc:"The collection that named participation's capacity to legitimise decisions already taken. Keeping it visible is how an organisation signals it interrogates participation rather than sells it.",howto:"Assign the opening chapter as pre-reading before any major process design session and ask the team to identify which critique most applies to your own practice. Publishing this text in your own library, rather than only citing supportive literature, is itself a trust signal to sceptical communities.",link:"https://www.semanticscholar.org/paper/Participation:-the-New-Tyranny-Cooke-Kothari/056edd8d1dd2de56e7eae154b47e468f33c69e9a"},
+  {t:"Localizing Development: Does Participation Work?",a:"Ghazala Mansuri and Vijayendra Rao",y:"2013",k:"Report",cat:"Critical",traps:['theatre'],tag:"Close to 500 evaluations. The findings are sobering.",desc:"The large-N evidence review of participatory development. Essential before promising any funder that participation improves outcomes.",howto:"Read the summary of findings before writing your next theory of change. Then remove any claim your evidence cannot carry, and replace it with a claim about process legitimacy — which the evidence supports — rather than service outcomes, which it often does not.",link:"https://www.worldbank.org/en/research/publication/localizing-development-does-participation-work"},
+  {t:"Participatory approaches to climate adaptation, resilience and mitigation: a systematic review",a:"Parsons et al., Ambio",y:"2025",k:"Paper",cat:"Critical",traps:['theatre'],tag:"Most participation leaves power exactly where it was.",desc:"Recent systematic review finding that the majority of participatory climate approaches sustain existing power imbalances, while identifying the minority that genuinely redistribute decision-making.",howto:"Extract the characteristics associated with genuine redistribution and turn them into a pre-mortem checklist for your own design. If your process shares more features with the majority category than the minority, redesign before you recruit anyone.",link:"https://link.springer.com/article/10.1007/s13280-025-02202-z"},
+  {t:"The Politics of Co-production",a:"Esther Turnhout et al.",y:"2020",k:"Paper",cat:"Critical",traps:['theatre'],tag:"Co-production is a political act, not a neutral method.",desc:"Examines who benefits when knowledge is co-produced, and how the language of collaboration can obscure unchanged power relations.",howto:"Ask three questions of any co-production framing in your work: who set the research question, who controls the output, and who can veto a finding. Write the answers into the project agreement rather than leaving them to good intentions.",link:null},
+  {t:"How to Run a Civic Lottery",a:"MASS LBP",y:"2017",k:"Guide",cat:"Methods",traps:['theatre'],tag:"The definitive short handbook on sortition mechanics.",desc:"Step-by-step selection design from the firm that has sent over 300,000 civic lottery invitations across Canada. Free, and licensed for reuse.",howto:"Follow its two-stage randomisation exactly: random invitation, then random selection from volunteers stratified to demographics. Then publish your stratification targets alongside your achieved sample. That gap is the single most useful transparency measure in participatory practice, and the one most often omitted.",link:"https://oecd-opsi.org/toolkits/how-to-run-a-civic-lottery/"},
+  {t:"Sortition Foundation",a:"Sortition Foundation",y:"—",k:"Tool",cat:"Methods",traps:['theatre'],tag:"Stratified random selection, and open-source tools to do it.",desc:"Runs recruitment and stratification for assemblies internationally, and publishes open-source selection software.",howto:"If your recruitment is open sign-up, you are selecting for the already-engaged. Switch to stratified sortition even at small scale — their tooling makes it feasible for a 30-person panel, not just a national assembly.",link:"https://participedia.net/organization/sortition-foundation"},
+  {t:"Free, Prior and Informed Consent manual for project practitioners",a:"FAO",y:"2016",k:"Guide",cat:"Rights",traps:['theatre'],tag:"Consent is a process with a veto, not a signature.",desc:"Six-step operational guidance on implementing FPIC. Explicit that consent can be withheld — or withdrawn at any stage.",howto:"Build FPIC into project timelines as a gate with the power to stop the project, not a milestone to be passed. If your workplan has no scenario in which consent is withheld and the project ends, you are running consultation and calling it consent.",link:"https://www.fao.org/indigenous-peoples/pillars-of-work/free--prior-and-informed-consent/en"},
+  {t:"FPIC Manual — full text",a:"FAO Open Knowledge",y:"2016",k:"Guide",cat:"Rights",traps:['theatre'],tag:"The full manual, free to download.",desc:"The complete practitioner text behind the six-step process, suitable for adapting into your own project protocols.",howto:"Extract the six steps into a one-page project checklist and attach it to every scoping document. The manual is too long to be read by the people who most need it; the checklist is not.",link:"https://openknowledge.fao.org/items/8e4d97dc-9226-4edb-b906-8371644adf8b"},
+  {t:"Kounkuey Design Initiative — Productive Public Spaces",a:"Kounkuey Design Initiative",y:"2006–",k:"Case",cat:"Urban",traps:['theatre'],tag:"Community-built public space in Kibera, still standing.",desc:"Two decades of participatory design and construction in informal settlements in Nairobi and California, with residents guiding the process from conception through management.",howto:"Study the handover model, not the architecture. KDI's spaces are conceived, built and managed by the people who use them — the management agreement is the transferable artefact, and it is what determines whether a space survives year three.",link:"https://kounkuey.org/"},
+  {t:"What if gentrification was about healing communities instead of displacing them?",a:"Liz Ogbu (TED)",y:"2017",k:"Video",cat:"Urban",traps:['theatre'],tag:"Fifteen minutes on spatial justice and grief.",desc:"The best short primer available on why displacement is treated as inevitable and what it takes to design otherwise.",howto:"Open a workshop with it rather than a framework slide. It reframes participation as repair rather than consultation in under fifteen minutes, and it does so through story, which travels further with mixed-sector rooms than a diagram.",link:"https://www.ted.com/talks/liz_ogbu_what_if_gentrification_was_about_healing_communities_instead_of_displacing_them"},
+  {t:"Insurgent Planning: Situating Radical Planning in the Global South",a:"Faranak Miraftab",y:"2009",k:"Paper",cat:"Urban",traps:['theatre'],tag:"Invited spaces and invented spaces.",desc:"Distinguishes participation sanctioned by authorities from participation communities create for themselves. The direct theoretical companion to independent-bridge practice.",howto:"Map both kinds of space in your context. If your organisation only ever appears in invited spaces, you are structurally aligned with the convening institution regardless of your intentions — and communities will read that correctly.",link:null},
+  {t:"Asset-Based Community Development",a:"John Kretzmann and John McKnight",y:"1993",k:"Book",cat:"Urban",traps:['theatre'],tag:"Start from what a place has, not what it lacks.",desc:"The methodological alternative to needs assessment, which structurally positions communities as deficient.",howto:"Replace the needs assessment in your next scoping phase with an asset map built by community members themselves. Same time cost, entirely different opening relationship, and it surfaces capacity you would otherwise pay a consultant to provide.",link:null},
+  {t:"Mainstreaming Equity and Justice in the Ocean",a:"Nathan J. Bennett, Frontiers in Marine Science",y:"2022",k:"Paper",cat:"Ocean and coastal",traps:['theatre'],tag:"Blue justice, defined and made operational.",desc:"Open-access framing of equity and justice across ocean governance — the term small-scale fisheries organisations coined for what blue growth does to them.",howto:"Add a distributional question to any blue economy proposal you assess: who currently uses this water, what will they lose, and what is the compensation mechanism? If the proposal cannot answer, that is your finding.",link:"https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.873572/epub"},
+  {t:"Thank You for the Rain",a:"Julia Dahr and Kisilu Musya",y:"2017",k:"Film",cat:"Onboarding",traps:['theatre'],tag:"A Kenyan farmer carries his village's evidence to COP21.",desc:"Five years of self-shot footage following Kisilu Musya from father to community organiser to global advocate. The community-to-negotiation pathway, on screen.",howto:"Run it as a 90-minute watch-along with one discussion question: at which point in Kisilu's journey did an institution have to choose whether to listen, and what did that choice cost them? Also the best single thing to send a funder who doesn't yet understand why the pathway matters.",link:"https://www.imdb.com/title/tt6512856/"},
+  {t:"The Ants and the Grasshopper",a:"Raj Patel and Zak Piper",y:"2021",k:"Film",cat:"Onboarding",traps:['theatre'],tag:"Anita Chitaya travels from Malawi to persuade America.",desc:"Ten years in the making. Extraordinary on the difficulty of translating lived evidence across radically different worlds.",howto:"Pair it with Thank You for the Rain in a two-session series. The films answer each other: one shows evidence travelling upward to negotiators, the other sideways to peers. Impact-screening resources are on the film's own site.",link:"https://www.antsandgrasshopper.org/see-the-film"},
+  {t:"Braiding Sweetgrass",a:"Robin Wall Kimmerer",y:"2013",k:"Book",cat:"Regenerative",traps:['theatre'],tag:"Reciprocity as a design principle.",desc:"Indigenous knowledge and botanical science held together. Reframes the relationship between people and place as mutual obligation rather than management.",howto:"Apply the honourable harvest framing to your own extraction of community time and knowledge: what are you giving back, in what form, and on whose timetable? Write the answer into project budgets as a line item, not as goodwill.",link:null}
 ];
-const FORMATS=['Paper','Book','Report','Guide','Tool','Case','Film'];
+const FORMATS=['Book','Paper','Report','Guide','Tool','Case','Film','Video','Podcast'];
 let activeTrap=null, activeFormat=null, query='';
 const ring=`<svg class="ring" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="#8B52FF" stroke-width="1.8"/><circle cx="12" cy="12" r="7.5" fill="none" stroke="#8B52FF" stroke-width="1.8" opacity=".5"/></svg>`;
 
 function trapCards(withCount){
   return TRAPS.map(t=>{
     const n=DATA.filter(d=>d.traps.includes(t.id)).length;
-    return `<button class="trap" data-trap="${t.id}" aria-pressed="false">${ring}<h3>${t.name}</h3><p>${t.blurb}</p><span class="n">${n} resources &rarr;</span></button>`;
+    return `<button class="trap" data-trap="${t.id}" aria-pressed="false">${ring}<h3>${t.name}</h3><p>${t.blurb}</p><span class="n">${n} resource${n===1?'':'s'} &rarr;</span></button>`;
   }).join('');
 }
 document.getElementById('lib-traps').innerHTML = trapCards();
-document.getElementById('work-traps').innerHTML = trapCards();
 document.getElementById('formats').innerHTML = FORMATS.map(f=>`<button class="pill" data-format="${f}" aria-pressed="false">${f}</button>`).join('');
 document.getElementById('total').textContent = DATA.length;
 
@@ -800,19 +567,21 @@ function render(){
   const list = DATA.filter(d =>
     (!activeTrap || d.traps.includes(activeTrap)) &&
     (!activeFormat || d.k===activeFormat) &&
-    (!query || (d.t+' '+d.a+' '+d.why+' '+d.tags.join(' ')).toLowerCase().includes(query)));
+    (!query || (d.t+' '+d.a+' '+d.tag+' '+d.desc+' '+d.howto+' '+d.cat).toLowerCase().includes(query)));
   document.getElementById('results').innerHTML = list.length ? list.map(d=>`
     <article class="item">
       <div class="item-top">
-        <div><h3>${d.t}</h3><p class="meta">${d.a} &middot; ${d.y} &middot; ${d.m}</p></div>
+        <div><h3>${d.t}</h3><p class="meta">${d.a} &middot; ${d.y}</p></div>
         <span class="kind">${d.k}</span>
       </div>
-      <p class="why">${d.why}</p>
+      <p class="why">${d.tag}</p>
+      <p class="desc">${d.desc}</p>
       <div class="tags">
         ${d.traps.map(id=>`<span class="tag">${TRAPS.find(t=>t.id===id).name}</span>`).join('')}
-        ${d.tags.map(t=>`<span class="tag${t==='Critical'?' crit':''}">${t}</span>`).join('')}
+        <span class="tag${d.cat==='Critical'?' crit':''}">${d.cat}</span>
       </div>
-      ${d.note?`<div class="note"><p class="by">Practice note &middot; ${d.note.by}</p><blockquote>${d.note.q}</blockquote></div>`:''}
+      <div class="trythis"><p class="lbl">Try this</p><p>${d.howto}</p></div>
+      ${d.link?`<a class="item-link" href="${d.link}" target="_blank" rel="noopener">Open resource &rarr;</a>`:`<span class="pending">Link to be confirmed</span>`}
     </article>`).join('') : `<p class="empty">Nothing matches those filters yet. Try clearing one — or suggest what's missing.</p>`;
   const bits=[];
   if(activeTrap) bits.push(TRAPS.find(t=>t.id===activeTrap).name.toLowerCase());
